@@ -1,0 +1,22 @@
+﻿@model UrunSatisSistemi.Models.TKategori
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<form method="post">
+    <h2>Yeni Kategori</h2>
+    <br />
+    <div style="margin-top:15px">
+        <label>
+            Kategori
+        </label>
+        @Html.TextBoxFor(y => y.Kategori, new { @class = "form-control", @required = "required" })
+    </div>
+    <br />
+    <br />
+    <button class="btn btn-primary">Yeni Kategori Ekle</button>
+</form>
+

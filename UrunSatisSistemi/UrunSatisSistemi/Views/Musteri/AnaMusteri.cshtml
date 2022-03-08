@@ -1,0 +1,28 @@
+﻿@using UrunSatisSistemi.Models
+@model List<TMusteri>
+@{
+    ViewBag.Title = "AnaMusteri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h2>Müşteriler</h2>
+<br />
+<table class="table table-hover">
+    <tr><th>ID</th><th>Müşteri</th><th>Cinsiyet</th><th>Doğum Tarihi</th><th>İşlemler</th></tr>
+    @foreach (var ktg in Model)
+    {
+        <tr>
+            <td>@ktg.MusteriID</td>
+            <td>@ktg.Musteri</td>
+            <td>@ktg.Cinsiyet</td>
+            <td>@ktg.DogumTarih</td>
+            <td>
+                @Html.ActionLink("Sil", "MusteriSil", new { ID = ktg.MusteriID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor musunuz?')" })
+                <a href="~/Musteri/MusteriGuncelle/@ktg.MusteriID" class="btn btn-primary">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Musteri/YeniMusteri" class="btn btn-primary">Yeni Müşteri Ekle</a>

@@ -1,0 +1,31 @@
+﻿@using UrunSatisSistemi.Models
+@model List<TSepet>
+@{
+    ViewBag.Title = "AnaSepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<h2>Sepet</h2>
+<br />
+<table class="table table-hover">
+    <tr><th>ID</th><th>Müşteri</th><th>Ürün</th><th>Adet</th><th>Toplam Miktar</th><th>İşlemler</th></tr>
+    @foreach (var ktg in Model)
+    {
+        <tr>
+            <td>@ktg.SepetID</td>
+            <td>@ktg.TMusteri.Musteri</td>
+            <td>@ktg.TUrun.Urun</td>
+            <td>@ktg.Adet</td>
+            <td>@ktg.ToplamMiktar</td>
+            <td>
+                @Html.ActionLink("Sil", "SepetSil", new { ID = ktg.SepetID }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor musunuz?')" })
+                <a href="~/Sepet/SepetGuncelle/@ktg.SepetID" class="btn btn-primary">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/Sepet/YeniSepet" class="btn btn-primary">Sepete Yeni İşlem Ekle</a>
+
+

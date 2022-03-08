@@ -1,0 +1,47 @@
+﻿@model UrunSatisSistemi.Models.TSepet
+@{
+    ViewBag.Title = "YeniSepet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+@using (Html.BeginForm("YeniSepet", "Sepet", FormMethod.Post))
+{
+    <h2>Yeni Sepet</h2>
+    <br />
+    <div style="margin-top:15px">
+        <label>
+            Müşteri
+        </label>
+        @Html.DropDownListFor(y => y.Musteri, (List<SelectListItem>)ViewBag.dgr, "Müşteri Seçiniz..", new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>
+            Ürün
+        </label>
+        @Html.DropDownListFor(y => y.Urun, (List<SelectListItem>)ViewBag.dgr2, "Ürün Seçiniz..", new { @class = "form-control" })
+    </div>
+    <br />
+    <div style="margin-top:15px">
+        <label>
+            Adet
+        </label>
+        @Html.TextBoxFor(y => y.Adet, new { @class = "form-control", @required = "required" })
+    </div>
+    <br />
+    <div style="margin-top:15px">
+        <label>
+            Toplam Miktar
+        </label>
+        @Html.TextBoxFor(y => y.ToplamMiktar, new { @class = "form-control", @required = "required" })
+    </div>
+    <br />
+    <br />
+    <button class="btn btn-primary">Sepete Ekle</button>
+}
+
+
+
+

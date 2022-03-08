@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UrunSatisDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TAdmin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kullanici" Type="varchar" MaxLength="50" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TKategori">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategori" Type="varchar" MaxLength="50" />
+          <Property Name="Aciklama" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TMusteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Musteri" Type="varchar" MaxLength="100" />
+          <Property Name="DogumTarih" Type="varchar" MaxLength="50" />
+          <Property Name="Cinsiyet" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TSepet">
+          <Key>
+            <PropertyRef Name="SepetID" />
+          </Key>
+          <Property Name="SepetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Musteri" Type="int" />
+          <Property Name="Urun" Type="int" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="ToplamMiktar" Type="int" />
+        </EntityType>
+        <EntityType Name="TUrun">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urun" Type="varchar" MaxLength="50" />
+          <Property Name="Kod" Type="varchar" MaxLength="50" />
+          <Property Name="Fiyat" Type="int" />
+          <Property Name="Stok" Type="varchar" MaxLength="50" />
+          <Property Name="Kategori" Type="int" />
+        </EntityType>
+        <Association Name="FK_TSepet_TMusteri">
+          <End Role="TMusteri" Type="Self.TMusteri" Multiplicity="0..1" />
+          <End Role="TSepet" Type="Self.TSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMusteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="TSepet">
+              <PropertyRef Name="Musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSepet_TUrun">
+          <End Role="TUrun" Type="Self.TUrun" Multiplicity="0..1" />
+          <End Role="TSepet" Type="Self.TSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUrun">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="TSepet">
+              <PropertyRef Name="Urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUrun_TKategori">
+          <End Role="TKategori" Type="Self.TKategori" Multiplicity="0..1" />
+          <End Role="TUrun" Type="Self.TUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TKategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="TUrun">
+              <PropertyRef Name="Kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UrunSatisDBModelStoreContainer">
+          <EntitySet Name="TAdmin" EntityType="Self.TAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TKategori" EntityType="Self.TKategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TMusteri" EntityType="Self.TMusteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSepet" EntityType="Self.TSepet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUrun" EntityType="Self.TUrun" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TSepet_TMusteri" Association="Self.FK_TSepet_TMusteri">
+            <End Role="TMusteri" EntitySet="TMusteri" />
+            <End Role="TSepet" EntitySet="TSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSepet_TUrun" Association="Self.FK_TSepet_TUrun">
+            <End Role="TUrun" EntitySet="TUrun" />
+            <End Role="TSepet" EntitySet="TSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUrun_TKategori" Association="Self.FK_TUrun_TKategori">
+            <End Role="TKategori" EntitySet="TKategori" />
+            <End Role="TUrun" EntitySet="TUrun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UrunSatisDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TKategori">
+          <Key>
+            <PropertyRef Name="KategoriID" />
+          </Key>
+          <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategori" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TUrun" Relationship="Self.FK_TUrun_TKategori" FromRole="TKategori" ToRole="TUrun" />
+        </EntityType>
+        <EntityType Name="TMusteri">
+          <Key>
+            <PropertyRef Name="MusteriID" />
+          </Key>
+          <Property Name="MusteriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Musteri" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DogumTarih" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TSepet" Relationship="Self.FK_TSepet_TMusteri" FromRole="TMusteri" ToRole="TSepet" />
+        </EntityType>
+        <EntityType Name="TSepet">
+          <Key>
+            <PropertyRef Name="SepetID" />
+          </Key>
+          <Property Name="SepetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Musteri" Type="Int32" />
+          <Property Name="Urun" Type="Int32" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="ToplamMiktar" Type="Int32" />
+          <NavigationProperty Name="TMusteri" Relationship="Self.FK_TSepet_TMusteri" FromRole="TSepet" ToRole="TMusteri" />
+          <NavigationProperty Name="TUrun" Relationship="Self.FK_TSepet_TUrun" FromRole="TSepet" ToRole="TUrun" />
+        </EntityType>
+        <EntityType Name="TUrun">
+          <Key>
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="UrunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urun" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fiyat" Type="Int32" />
+          <Property Name="Stok" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kategori" Type="Int32" />
+          <NavigationProperty Name="TKategori" Relationship="Self.FK_TUrun_TKategori" FromRole="TUrun" ToRole="TKategori" />
+          <NavigationProperty Name="TSepet" Relationship="Self.FK_TSepet_TUrun" FromRole="TUrun" ToRole="TSepet" />
+        </EntityType>
+        <Association Name="FK_TUrun_TKategori">
+          <End Role="TKategori" Type="Self.TKategori" Multiplicity="0..1" />
+          <End Role="TUrun" Type="Self.TUrun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TKategori">
+              <PropertyRef Name="KategoriID" />
+            </Principal>
+            <Dependent Role="TUrun">
+              <PropertyRef Name="Kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSepet_TMusteri">
+          <End Role="TMusteri" Type="Self.TMusteri" Multiplicity="0..1" />
+          <End Role="TSepet" Type="Self.TSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TMusteri">
+              <PropertyRef Name="MusteriID" />
+            </Principal>
+            <Dependent Role="TSepet">
+              <PropertyRef Name="Musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSepet_TUrun">
+          <End Role="TUrun" Type="Self.TUrun" Multiplicity="0..1" />
+          <End Role="TSepet" Type="Self.TSepet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUrun">
+              <PropertyRef Name="UrunID" />
+            </Principal>
+            <Dependent Role="TSepet">
+              <PropertyRef Name="Urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UrunSatisDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TKategori" EntityType="Self.TKategori" />
+          <EntitySet Name="TMusteri" EntityType="Self.TMusteri" />
+          <EntitySet Name="TSepet" EntityType="Self.TSepet" />
+          <EntitySet Name="TUrun" EntityType="Self.TUrun" />
+          <AssociationSet Name="FK_TUrun_TKategori" Association="Self.FK_TUrun_TKategori">
+            <End Role="TKategori" EntitySet="TKategori" />
+            <End Role="TUrun" EntitySet="TUrun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSepet_TMusteri" Association="Self.FK_TSepet_TMusteri">
+            <End Role="TMusteri" EntitySet="TMusteri" />
+            <End Role="TSepet" EntitySet="TSepet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSepet_TUrun" Association="Self.FK_TSepet_TUrun">
+            <End Role="TUrun" EntitySet="TUrun" />
+            <End Role="TSepet" EntitySet="TSepet" />
+          </AssociationSet>
+          <EntitySet Name="TAdmin" EntityType="UrunSatisDBModel.TAdmin" />
+        </EntityContainer>
+        <EntityType Name="TAdmin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kullanici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UrunSatisDBModelStoreContainer" CdmEntityContainer="UrunSatisDBEntities">
+          <EntitySetMapping Name="TKategori">
+            <EntityTypeMapping TypeName="UrunSatisDBModel.TKategori">
+              <MappingFragment StoreEntitySet="TKategori">
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TMusteri">
+            <EntityTypeMapping TypeName="UrunSatisDBModel.TMusteri">
+              <MappingFragment StoreEntitySet="TMusteri">
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Musteri" ColumnName="Musteri" />
+                <ScalarProperty Name="DogumTarih" ColumnName="DogumTarih" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TSepet">
+            <EntityTypeMapping TypeName="UrunSatisDBModel.TSepet">
+              <MappingFragment StoreEntitySet="TSepet">
+                <ScalarProperty Name="SepetID" ColumnName="SepetID" />
+                <ScalarProperty Name="Musteri" ColumnName="Musteri" />
+                <ScalarProperty Name="Urun" ColumnName="Urun" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="ToplamMiktar" ColumnName="ToplamMiktar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUrun">
+            <EntityTypeMapping TypeName="UrunSatisDBModel.TUrun">
+              <MappingFragment StoreEntitySet="TUrun">
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="Urun" ColumnName="Urun" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Stok" ColumnName="Stok" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAdmin">
+            <EntityTypeMapping TypeName="UrunSatisDBModel.TAdmin">
+              <MappingFragment StoreEntitySet="TAdmin">
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Kullanici" ColumnName="Kullanici" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

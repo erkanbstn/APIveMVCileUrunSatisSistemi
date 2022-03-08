@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrunSatisSistemi", "UrunSatisSistemi\UrunSatisSistemi.csproj", "{B5FFBFBB-D02C-41F5-BF6E-9E4CEF28DB61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrunSatisSistemiAPI", "UrunSatisSistemiAPI\UrunSatisSistemiAPI.csproj", "{765DA63F-90CD-4C51-B566-5E1C8A3C83A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5FFBFBB-D02C-41F5-BF6E-9E4CEF28DB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FFBFBB-D02C-41F5-BF6E-9E4CEF28DB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FFBFBB-D02C-41F5-BF6E-9E4CEF28DB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FFBFBB-D02C-41F5-BF6E-9E4CEF28DB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765DA63F-90CD-4C51-B566-5E1C8A3C83A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765DA63F-90CD-4C51-B566-5E1C8A3C83A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765DA63F-90CD-4C51-B566-5E1C8A3C83A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765DA63F-90CD-4C51-B566-5E1C8A3C83A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14571587-C99B-46FC-994F-5F1CAE8CF112}
+	EndGlobalSection
+EndGlobal
